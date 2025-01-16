@@ -1,6 +1,6 @@
 def research_task_description_tmplt(link: str, date) -> str:
         return f"""
-            Conduct research about Haiti via this link: { link }
+            Conduct research about InsurTech via this link: { link }
             You may crawl this link up to maximum one level deep.
             Make sure all the information is accurate.
             

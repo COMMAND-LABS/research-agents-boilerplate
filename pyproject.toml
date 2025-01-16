@@ -1,0 +1,14 @@
+[project]
+name = "haiti"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "agentops>=0.3.23",
+    "boto3>=1.36.0",
+    "crewai>=0.95.0",
+    "crewai-tools>=0.25.8",
+    "pydantic>=2.10.5",
+    "python-dotenv>=1.0.1",
+]

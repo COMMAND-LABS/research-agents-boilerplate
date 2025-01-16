@@ -1,0 +1,9 @@
+research_task:
+  # description of the task will be built from one of the prompt templates
+  expected_output: >
+    A list with 8 bullet points of the most relevant information
+
+final_analysis:
+  # description of the task will be built from one of the prompt templates
+  expected_output: >
+    A list of up to 50 results of the most important "A.I. Business News" targeted towards non-technical business owners and executives.

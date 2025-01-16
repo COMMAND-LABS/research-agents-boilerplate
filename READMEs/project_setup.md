@@ -72,7 +72,7 @@ uv add agentops crewai crewai-tools pydantic boto3 python-dotenv
 - `echo "AWS_REGION=" >> .env`
 - `echo "AWS_ACCESS_KEY_ID=" >> .env`
 - `echo "AWS_SECRET_KEY=" >> .env`
-- https://console.anthropic.com/settings/keys
+- https://platform.openai.com/settings/organization/api-keys
 - https://docs.crewai.com/concepts/llms
 - https://docs.litellm.ai/docs/providers/openai
 

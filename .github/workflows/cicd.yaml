@@ -33,8 +33,8 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -f Dockerfile -t "${{ env.ARTIFACTORY_URL }}:${{ github.sha }}" ./
-          docker push "${{ env.ARTIFACTORY_URL }}:${{ github.sha }}"
+          docker build -f Dockerfile -t "${{ env.IMAGE_URL }}:${{ github.sha }}" ./
+          docker push "${{ env.IMAGE_URL }}:${{ github.sha }}"
 
       - name: Deploy to Cloud Run Job
         run: |

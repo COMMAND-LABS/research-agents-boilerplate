@@ -1,6 +1,6 @@
 # TLDR
 
-Recording the steps of setting up the project from scratch based on the https://github.com/thaddavis/research-agents-supercharged repo
+Recording the steps of setting up the project from scratch
 
 ## Step 1
 

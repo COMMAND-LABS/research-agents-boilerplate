@@ -1157,7 +1157,7 @@ wheels = [
 ]
 
 [[package]]
-name = "haiti"
+name = "research-agents"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

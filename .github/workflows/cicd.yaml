@@ -7,11 +7,11 @@ on:
 env:
   PROJECT_ID: kalygo-436411 # Google Cloud project id
   PROJECT_NUMBER: 830723611668 # Google Cloud project number
-  JOB_NAME: insurtech-news-crew # Cloud Run Job name
+  JOB_NAME: research-agents # Cloud Run Job name
   JOB_REGION: us-east1 # Cloud Run region 
-  IMAGE_REPO_NAME: insurtech-news-crew-repo # Artifact Registry repository name
-  ARTIFACTORY_URL: us-east1-docker.pkg.dev/kalygo-436411/insurtech-news-crew-repo
-  IMAGE_URL: us-east1-docker.pkg.dev/kalygo-436411/insurtech-news-crew-repo/insurtech-news-crew
+  IMAGE_REPO_NAME: research-agents-repo # Artifact Registry repository name
+  ARTIFACTORY_URL: us-east1-docker.pkg.dev/kalygo-436411/research-agents-repo
+  IMAGE_URL: us-east1-docker.pkg.dev/kalygo-436411/research-agents-repo/research-agents
 
 jobs:
   deploy:

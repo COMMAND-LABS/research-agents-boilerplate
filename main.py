@@ -47,7 +47,7 @@ emails=(os.getenv("MAILING_LIST") or "")
 
 # Define main script
 def main():
-    print('--- Supercharged News Crew ---')
+    print('--- Research Agents ---')
 
     current_date = datetime.now().strftime("%Y-%m-%d")  # Add current date
 
@@ -68,20 +68,20 @@ def main():
     )
 
     # -v-v- DEFINE TASKS -v-v-
-    task_research_insurtechinsights = Task(
-        description=research_task_description_tmplt("https://www.insurtechinsights.com/news-insights/artificial-intelligence/", current_date),
+    task_research_ainews = Task(
+        description=research_task_description_tmplt("https://www.artificialintelligence-news.com/", current_date),
         expected_output=tasks_yaml['research_task']["expected_output"],
         output_pydantic=NewsResults,
         agent=researcher,
     )
-    task_research_insurtechnews = Task(
-        description=research_task_description_tmplt("https://insurtechnews.com/", current_date),
+    task_research_techcrunch = Task(
+        description=research_task_description_tmplt("https://techcrunch.com/category/artificial-intelligence/", current_date),
         expected_output=tasks_yaml['research_task']["expected_output"],
         output_pydantic=NewsResults,
         agent=researcher,
     )
-    task_research_insurtechdigital = Task(
-        description=research_task_description_tmplt("https://insurtechdigital.com/", current_date),
+    task_research_nbcnews = Task(
+        description=research_task_description_tmplt("https://www.nbcnews.com/artificial-intelligence", current_date),
         expected_output=tasks_yaml['research_task']["expected_output"],
         output_pydantic=NewsResults,
         agent=researcher,
@@ -89,9 +89,9 @@ def main():
 
     # List of research tasks to be performed in parallel
     tasks = [
-        task_research_insurtechinsights,
-        task_research_insurtechnews,
-        task_research_insurtechdigital
+        task_research_ainews,
+        task_research_techcrunch,
+        task_research_nbcnews
     ]
 
     research_results = [] # Execute tasks in parallel
@@ -125,7 +125,7 @@ def main():
         print("No email addresses provided.")
     for email in email_list:
         if bool(email) and is_valid_email(email):
-            send_email_ses([email.strip()], "💸💼📝 Insur News Crew Update", format_news_for_email(final_analysis_output.pydantic.results, current_datetime))
+            send_email_ses([email.strip()], "Research Agents Update", format_news_for_email(final_analysis_output.pydantic.results, current_datetime))
 
 if __name__ == "__main__":
     try:

@@ -1,6 +1,6 @@
 def analyst_task_description_tmplt(current_date: str, results) -> str:
     return f"""
-        Generate a structured list of 5 of the most important updates on InsurTech from the research results provided.
+        Generate a structured list of 5 of the most important updates from the research results provided.
         Include working links to the original source material of each article you identify.
         Verify that the source links are working.
         The current date is { current_date }.

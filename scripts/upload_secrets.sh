@@ -2,7 +2,7 @@
 
 # Set your Google Cloud project ID
 PROJECT_ID="kalygo-436411"
-SECRET_PREFIX="INSURTECH_NEWS_CREW"
+SECRET_PREFIX="RESEARCH_AGENTS"
 
 # Path to your .env file
 ENV_FILE=".env"

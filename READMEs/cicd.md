@@ -17,4 +17,4 @@ Then add the Service Account to the GitHub Actions Settings tab
 
 ## PRO SHIT: Ignore the Service Account
 
-Add `insurtech-news-crew-cicd-sa.json` to .gitignore
+Add `research-agents-cicd-sa.json` to .gitignore

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-SERVICE_ACCOUNT_NAME="insurtech-news-crew-cicd"
-SERVICE_ACCOUNT_KEY_FILE="insurtech-news-crew-cicd-sa.json"
-ARTIFACTORY_REPO_NAME=insurtech-news-crew-repo
+SERVICE_ACCOUNT_NAME="research-agents-cicd"
+SERVICE_ACCOUNT_KEY_FILE="research-agents-cicd-sa.json"
+ARTIFACTORY_REPO_NAME=research-agents-repo
 PROJECT_NUMBER=830723611668
 
 gcloud iam service-accounts create $SERVICE_ACCOUNT_NAME \
-  --description="Service account for GitHub Actions CI/CD for the InsurTech News Crew" \
-  --display-name="InsurTech News Crew CICD"
+  --description="Service account for GitHub Actions CI/CD for the Research Agents" \
+  --display-name="Research Agents CICD"
 
 gcloud artifacts repositories add-iam-policy-binding $ARTIFACTORY_REPO_NAME \
   --location=us-east1 \

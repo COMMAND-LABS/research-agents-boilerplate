@@ -4,7 +4,7 @@ from datetime import datetime  # Add this line
 def format_news_for_email(news_results: NewsResults, current_date: datetime) -> str:
 
     formatted_report_date = current_date.strftime("%B %d, %Y")
-    email_body = f"<h1>💸💼📝 InsurTech News Crew Update</h1>\n"
+    email_body = f"<h1>Research Agents Update</h1>\n"
     email_body += f"<h2><strong>Report Date:</strong> {formatted_report_date}</h2>\n"
     email_body += "<hr>\n"
 

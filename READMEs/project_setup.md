@@ -28,6 +28,7 @@ mkdir prompts # here is where we will store most of our A.I. prompts
 mkdir pydantic_types # Pydantic is a tool that allows us to specify the data our application will handle and provides us with feature for making sure our code aligns with the data we expect to pass through our application. We will store most of the Pydantic related code we write here
 mkdir test # not of particular importance but if we wanted to write code for testing our application in an automated manner we would put it here
 mkdir tools # Here is where we will put the code that defines the "tools" our Agents can use
+mkdir scripts # Here is where we will any utility scripts related to our application
 ```
 
 Gorgeous!

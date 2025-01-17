@@ -13,6 +13,8 @@ touch scripts/generate_service_account.sh
 chmod +x scripts/generate_service_account.sh
 ```
 
+Then add the Service Account to the GitHub Actions Settings tab
+
 ## PRO SHIT: Ignore the Service Account
 
 Add `insurtech-news-crew-cicd-sa.json` to .gitignore

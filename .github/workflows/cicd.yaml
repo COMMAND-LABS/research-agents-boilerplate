@@ -1,0 +1,60 @@
+name: Build and Deploy to Cloud Run Job
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  PROJECT_ID: kalygo-436411 # Google Cloud project id
+  PROJECT_NUMBER: 830723611668 # Google Cloud project number
+  JOB_NAME: insurtech-news-crew # Cloud Run Job name
+  JOB_REGION: us-east1 # Cloud Run region 
+  IMAGE_REPO_NAME: insurtech-news-crew-repo # Artifact Registry repository name
+  ARTIFACTORY_URL: us-east1-docker.pkg.dev/kalygo-436411/insurtech-news-crew-repo
+  IMAGE_URL: us-east1-docker.pkg.dev/kalygo-436411/insurtech-news-crew-repo/insurtech-news-crew
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Google Cloud Auth
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+          project_id: ${{ env.PROJECT_ID }}
+
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker us-east1-docker.pkg.dev
+
+      - name: Build and Push Container
+        run: |-
+          docker build -f Dockerfile -t "${{ env.ARTIFACTORY_URL }}:${{ github.sha }}" ./
+          docker push "${{ env.ARTIFACTORY_URL }}:${{ github.sha }}"
+
+      - name: Deploy to Cloud Run Job
+        run: |
+          gcloud run jobs deploy ${{ env.JOB_NAME }} \
+          --image ${{ env.IMAGE_URL }}:${{ github.sha }} \
+          --set-secrets "OPENAI_API_KEY=projects/$PROJECT_NUMBER/secrets/SUPERCHARGED_NEWS_OPENAI_API_KEY:latest,AWS_SECRET_KEY=projects/$PROJECT_NUMBER/secrets/SUPERCHARGED_NEWS_AWS_SECRET_KEY:latest,AWS_ACCESS_KEY_ID=projects/$PROJECT_NUMBER/secrets/SUPERCHARGED_NEWS_AWS_ACCESS_KEY_ID:latest,AWS_REGION=projects/$PROJECT_NUMBER/secrets/SUPERCHARGED_NEWS_AWS_REGION:latest,AGENTOPS_API_KEY=projects/830723611668/secrets/SUPERCHARGED_NEWS_AGENTOPS_API_KEY:latest,MAILING_LIST=projects/830723611668/secrets/SUPERCHARGED_NEWS_MAILING_LIST:latest" \
+          --memory 1Gi \
+          --max-retries 5 \
+          --region us-east1 \
+          --project $PROJECT_ID
+
+      - name: Delete the Last 5 Images
+        run: |
+          # List images sorted by creation time in descending order, skip the first 5, and delete the rest
+          IMAGES_TO_DELETE=$(gcloud artifacts docker images list $IMAGE_REPO_NAME \
+            --repository=${{ env.IMAGE_URL }} \
+            --format="value(uri)" \
+            --sort-by="~CREATE_TIME" | tail -n 5)
+
+          for IMAGE in $IMAGES_TO_DELETE; do
+            echo "Deleting image: $IMAGE"
+            gcloud artifacts docker images delete $IMAGE --quiet --delete-tags
+          done

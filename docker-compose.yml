@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  news:
+    container_name: insurtech-news-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      AGENTOPS_API_KEY: "${AGENTOPS_API_KEY}"
+      MAILING_LIST: "${MAILING_LIST}"
+      AWS_REGION: "${AWS_REGION}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_KEY: "${AWS_SECRET_KEY}"

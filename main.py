@@ -115,6 +115,12 @@ def main():
     final_analysis_output = final_analysis.execute_sync()
 
     email_list = emails.split(',')
+
+    print('---')
+    print(len(email_list))
+    print(email_list)
+    print('---')
+
     if len(email_list) == 0:
         print("No email addresses provided.")
     for email in email_list:

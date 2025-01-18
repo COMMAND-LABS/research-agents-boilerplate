@@ -75,6 +75,7 @@ CHECK OUT: `https://console.cloud.google.com/security/secret-manager?project=kal
 ```sh
 PROJECT_NUMBER=830723611668
 PROJECT_ID=kalygo-436411
+# peep the scripts/build_set_secrets_string.sh script
 gcloud run jobs deploy research-agents \
     --image $IMAGE_URL \
     --set-secrets "OPENAI_API_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_OPENAI_API_KEY:latest,AWS_SECRET_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_SECRET_KEY:latest,AWS_ACCESS_KEY_ID=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_ACCESS_KEY_ID:latest,AWS_REGION=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_REGION:latest,AGENTOPS_API_KEY=projects/830723611668/secrets/RESEARCH_AGENTS_AGENTOPS_API_KEY:latest,MAILING_LIST=projects/830723611668/secrets/RESEARCH_AGENTS_MAILING_LIST:latest" \

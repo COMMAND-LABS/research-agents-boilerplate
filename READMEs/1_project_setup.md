@@ -2,7 +2,7 @@
 
 Recording the steps of setting up the project from scratch
 
-## Step 1
+## Setting up the virtual environment
 
 ```sh
 python3 --version # 3.13.1

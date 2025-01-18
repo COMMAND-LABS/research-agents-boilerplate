@@ -104,7 +104,7 @@ def main():
             if result:
                 research_results.extend(result.pydantic.results)
 
-    final_analysis = Task(
+    task_final_analysis = Task(
         description=analyst_task_description_tmplt(current_date, research_results),
         expected_output=tasks_yaml['final_analysis']["expected_output"],
         agent=analyst,
@@ -112,19 +112,15 @@ def main():
         # output_file="report.json" # Uncomment this line to save the output to a file for testing
     )
 
-    final_analysis_output = final_analysis.execute_sync()
+    final_analysis_output = task_final_analysis.execute_sync()
 
     email_list = emails.split(',')
-
-    print('---')
-    print(len(email_list))
-    print(email_list)
-    print('---')
 
     if len(email_list) == 0:
         print("No email addresses provided.")
     for email in email_list:
         if bool(email) and is_valid_email(email):
+            print("Sending email to: " + email)
             send_email_ses([email.strip()], "Research Agents Update", format_news_for_email(final_analysis_output.pydantic.results, current_datetime))
 
 if __name__ == "__main__":

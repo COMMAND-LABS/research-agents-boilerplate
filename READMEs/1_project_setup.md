@@ -63,7 +63,7 @@ touch main.py # finally the main.py
 uv add agentops crewai crewai-tools pydantic boto3 python-dotenv
 ```
 
-## Final setup - Non-default LLM, OPENAI_API_KEY, AGENTOPS_API_KEY
+## Add environment variables
 
 - https://platform.openai.com/docs/overview
 - `touch .env`

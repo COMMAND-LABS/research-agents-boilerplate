@@ -121,7 +121,7 @@ def main():
     for email in email_list:
         if bool(email) and is_valid_email(email):
             print("Sending email to: " + email)
-            send_email_ses([email.strip()], "Research Agents Update", format_news_for_email(final_analysis_output.pydantic.results, current_datetime))
+            send_email_ses("noreply@kalygo.io", [email.strip()], "Research Agents Update", format_news_for_email(final_analysis_output.pydantic.results, current_datetime))
 
 if __name__ == "__main__":
     try:

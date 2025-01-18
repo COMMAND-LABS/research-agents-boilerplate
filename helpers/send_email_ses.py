@@ -1,7 +1,7 @@
 import os
 import boto3
 
-def send_email_ses(to_emails: list[str], subject: str, body: str):
+def send_email_ses(from_email: str, to_emails: list[str], subject: str, body: str):
   try:
     client = boto3.client(
       'ses',
@@ -11,7 +11,7 @@ def send_email_ses(to_emails: list[str], subject: str, body: str):
     )
 
     response = client.send_email(
-      Source='noreply@kalygo.io',
+      Source=from_email,
       Destination={
         'ToAddresses': to_emails
       },

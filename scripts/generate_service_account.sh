@@ -13,7 +13,6 @@ gcloud iam service-accounts create $SERVICE_ACCOUNT_NAME \
   --description=$SERVICE_ACCOUNT_DESCRIPTION \
   --display-name=$SERVICE_ACCOUNT_DISPLAY_NAME
 
-
 gcloud artifacts repositories add-iam-policy-binding $ARTIFACTORY_REPO_NAME \
   --location=us-east1 \
   --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \

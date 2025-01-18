@@ -1,8 +1,8 @@
 # TLDR
 
-Documenting steps of deploying to GCP
+Documenting steps of deploying to GCP (aka the cloud)
 
-## Initial steps of testing locally
+## Test the application in Docker
 
 Add a Dockerfile
 
@@ -21,21 +21,23 @@ Add a Dockerfile
 Jobs (One-off scripts) vs. Services (Long-running processes)
 
 ```sh
+PROJECT_ID=kalygo-436411
 gcloud --version
 gcloud auth login
+
 # https://console.cloud.google.com/artifacts/browse/kalygo-436411?project=kalygo-436411
 gcloud artifacts repositories create research-agents-repo \
     --repository-format=docker \
     --location=us-east1 \
     --description="Repo for holding images related to the Research Agents"
 gcloud auth configure-docker us-east1-docker.pkg.dev
-docker build --platform linux/amd64 -f Dockerfile -t us-east1-docker.pkg.dev/kalygo-436411/research-agents-repo/research-agents:latest . ## the "platform" flag is key
-docker push us-east1-docker.pkg.dev/kalygo-436411/research-agents-repo/research-agents:latest
+docker build --platform linux/amd64 -f Dockerfile -t us-east1-docker.pkg.dev/$PROJECT_ID/research-agents-repo/research-agents:latest . ## the "platform" flag is key
+docker push us-east1-docker.pkg.dev/$PROJECT_ID/research-agents-repo/research-agents:latest
 ```
 
 CHECK OUT THE FOLLOWING URL BEFORE AND AFTER PUSHING: `https://console.cloud.google.com/artifacts/docker/kalygo-436411/us-east1/research-agents-repo`
 
-## Now that the image is stored in GCP we can run it in GCP just like we ran it locally
+## Now that the image is stored in GCP we can run it just like we ran it locally
 
 First deploy the image to GCR...
 

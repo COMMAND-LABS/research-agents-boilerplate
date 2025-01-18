@@ -4,7 +4,6 @@
 # Set your Google Cloud project ID
 PROJECT_NUMBER="830723611668"
 SECRET_PREFIX="RESEARCH_AGENTS"
-secrets_string=""
 
 # Path to your .env file
 ENV_FILE=".env"
@@ -16,6 +15,7 @@ if [ ! -f "$ENV_FILE" ]; then
 fi
 
 # Loop through each line in the .env file
+secrets_string=""
 while IFS='=' read -r key value || [ -n "$key" ]; do
   # Skip empty lines and comments
   if [[ -z "$key" || "$key" == \#* ]]; then

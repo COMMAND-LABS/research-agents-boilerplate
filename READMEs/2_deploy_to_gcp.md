@@ -22,16 +22,18 @@ Jobs (One-off scripts) vs. Services (Long-running processes)
 
 ```sh
 PROJECT_ID=kalygo-436411
+DOCKER_REPOSITORY_URL=us-east1-docker.pkg.dev
+DOCKER_REPOSITORY_REGION=us-east1
 gcloud --version
 gcloud auth login
 
 # https://console.cloud.google.com/artifacts/browse/kalygo-436411?project=kalygo-436411
 gcloud artifacts repositories create research-agents-repo \
     --repository-format=docker \
-    --location=us-east1 \
+    --location=$DOCKER_REPOSITORY_REGION \
     --description="Repo for holding images related to the Research Agents"
-gcloud auth configure-docker us-east1-docker.pkg.dev
-docker build --platform linux/amd64 -f Dockerfile -t us-east1-docker.pkg.dev/$PROJECT_ID/research-agents-repo/research-agents:latest . ## the "platform" flag is key
+gcloud auth configure-docker $DOCKER_REPOSITORY_URL
+docker build --platform linux/amd64 -f Dockerfile -t $DOCKER_REPOSITORY_URL/$PROJECT_ID/research-agents-repo/research-agents:latest . ## the "platform" flag is key
 docker push us-east1-docker.pkg.dev/$PROJECT_ID/research-agents-repo/research-agents:latest
 ```
 

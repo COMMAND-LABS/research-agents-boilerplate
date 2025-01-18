@@ -78,7 +78,7 @@ PROJECT_ID=kalygo-436411
 # peep the scripts/build_set_secrets_string.sh script
 gcloud run jobs deploy research-agents \
     --image $IMAGE_URL \
-    --set-secrets "OPENAI_API_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_OPENAI_API_KEY:latest,AWS_SECRET_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_SECRET_KEY:latest,AWS_ACCESS_KEY_ID=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_ACCESS_KEY_ID:latest,AWS_REGION=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_REGION:latest,AGENTOPS_API_KEY=projects/830723611668/secrets/RESEARCH_AGENTS_AGENTOPS_API_KEY:latest,MAILING_LIST=projects/830723611668/secrets/RESEARCH_AGENTS_MAILING_LIST:latest" \
+    --set-secrets "OPENAI_API_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_OPENAI_API_KEY:latest,AWS_SECRET_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_SECRET_KEY:latest,AWS_ACCESS_KEY_ID=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_ACCESS_KEY_ID:latest,AWS_REGION=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AWS_REGION:latest,AGENTOPS_API_KEY=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_AGENTOPS_API_KEY:latest,MAILING_LIST=projects/$PROJECT_NUMBER/secrets/RESEARCH_AGENTS_MAILING_LIST:latest" \
     --memory 1Gi \
     --max-retries 5 \
     --region us-east1 \
@@ -105,9 +105,7 @@ gcloud run jobs execute research-agents \
 
 CHECK OUT: `https://console.cloud.google.com/run/jobs/details/us-east1/research-agents-crew/logs?project=kalygo-436411`
 
-## Now for the sauce...
-
-Google Cloud Run Scheduler
+## Add Google Cloud Run Scheduler
 
 ```sh
 SCHEDULER_JOB_NAME=research_agents_scheduler

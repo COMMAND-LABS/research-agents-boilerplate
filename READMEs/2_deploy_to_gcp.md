@@ -53,8 +53,8 @@ gcloud run jobs deploy $JOB_NAME \
   --memory=1Gi \
   --project $PROJECT_ID  
 
-gcloud run jobs execute research-agents \
-  --region=us-east1
+gcloud run jobs execute $JOB_NAME \
+  --region=$CLOUD_RUN_REGION
 
 # OOPS! - we need to give our container the environment variables
 
@@ -67,6 +67,8 @@ chmod +x scripts/upload_secrets.sh
 # Then redeploy the Cloud Run Job
 
 # Peep the scripts/build_set_secrets_string.sh script 🔑
+./scripts/build_set_secrets_string.sh
+
 gcloud run jobs deploy $JOB_NAME \
     --image $IMAGE_URL \
     --set-secrets "OPENAI_API_KEY=projects/830723611668/secrets/RESEARCH_AGENTS_OPENAI_API_KEY:latest,AGENTOPS_API_KEY=projects/830723611668/secrets/RESEARCH_AGENTS_AGENTOPS_API_KEY:latest,MAILING_LIST=projects/830723611668/secrets/RESEARCH_AGENTS_MAILING_LIST:latest,AWS_REGION=projects/830723611668/secrets/RESEARCH_AGENTS_AWS_REGION:latest,AWS_ACCESS_KEY_ID=projects/830723611668/secrets/RESEARCH_AGENTS_AWS_ACCESS_KEY_ID:latest,AWS_SECRET_KEY=projects/830723611668/secrets/RESEARCH_AGENTS_AWS_SECRET_KEY:latest" \
@@ -101,7 +103,7 @@ CHECK OUT: `https://console.cloud.google.com/run/jobs/details/us-east1/research-
 ```sh
 SCHEDULER_JOB_NAME=research_agents_scheduler
 SCHEDULER_REGION=us-east1
-CRON_EXPRESSION="0 0 * * 1,4"
+CRON_EXPRESSION="0 * * * *"
 # note the laziness below with the default compute service account
 gcloud scheduler jobs create http $SCHEDULER_JOB_NAME \
   --location $SCHEDULER_REGION \

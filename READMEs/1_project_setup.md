@@ -45,15 +45,15 @@ touch helpers/format_news_for_email.py
 touch helpers/is_valid_email.py
 touch helpers/send_email_ses.py
 # populate the helper functions now
+touch prompts/analyst_task_description_tmplt.py
+touch prompts/research_task_description_tmplt.py
+# populate the prompt templates
 touch pydantic_types/news_results.py
 # populate the pydantic-related functions now 
 # REFLECT on the "NewsResults" data type
 touch tools/url_qa.py
 touch tools/custom_scrape_website.py
 # populate the pydantic-related functions now 
-touch prompts/analyst_task_description_tmplt.py
-touch prompts/research_task_description_tmplt.py
-# populate the prompt templates
 touch main.py # finally the main.py
 ```
 
@@ -82,6 +82,8 @@ uv add agentops crewai crewai-tools pydantic boto3 python-dotenv
 - `uv run main.py` # WORKS √
 
 ## .gitignore
+
+- `touch .gitignore`
 
 ```.gitignore
 .env

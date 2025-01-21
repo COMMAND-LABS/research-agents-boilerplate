@@ -21,8 +21,8 @@ Add a Dockerfile
 Jobs (One-off scripts) vs. Services (Long-running processes)
 
 ```sh
-PROJECT_ID=kalygo-436411
-PROJECT_NUMBER=830723611668
+PROJECT_ID=<YOUR_PROJECT_ID>
+PROJECT_NUMBER=<YOUR_PROJECT_NUMBER>
 DOCKER_REPOSITORY_URL=us-east1-docker.pkg.dev
 DOCKER_REPOSITORY_REGION=us-east1
 gcloud --version
